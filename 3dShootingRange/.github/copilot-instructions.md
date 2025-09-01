@@ -2,7 +2,7 @@
 - Project name: 3dShootingRange
 - Unity version: Unity 2022.3.21f1
 - Active game object:
-  - Name: PTK_Cuboid_5
+  - Name: RPG7
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

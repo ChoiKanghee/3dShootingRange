@@ -4,14 +4,37 @@ using UnityEngine;
 
 public class RotateByMouse : MonoBehaviour
 {
-    public float anglePerSecond;
+    public float angleOverDistance;
+    public Transform cameraHolder;
+    public float minPitch;
+    public float maxPitch;
+
+    private float pitch;
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
     private void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
+        UpdateYaw();
+        UpdatePitch();
+    }
 
-        float yaw = mouseX * anglePerSecond * Time.deltaTime;
-        transform.Rotate(0, yaw, 0);
+    private void UpdateYaw()
+    {
+        float mouseX = Input.GetAxis("Mouse X");
+        float deltaYaw = mouseX * angleOverDistance;
+        transform.Rotate(0, deltaYaw, 0);
+    }
+
+    private void UpdatePitch()
+    {
+        float mouseY = Input.GetAxis("Mouse Y");
+        float deltaPitch = -mouseY * angleOverDistance;
+        pitch = Mathf.Clamp(pitch + deltaPitch, minPitch, maxPitch);
+        cameraHolder.localEulerAngles = new Vector3(pitch, 0, 0);
     }
 }

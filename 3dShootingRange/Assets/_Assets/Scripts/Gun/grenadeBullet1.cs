@@ -9,6 +9,7 @@ public class GrenadeBullet : MonoBehaviour
     public float explosionForce;
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision collision)
+
     {
         Instantiate(explosionEffect, transform.position, transform.rotation);
         Destroy(gameObject);
